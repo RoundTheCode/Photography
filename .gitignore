@@ -1,0 +1,13 @@
+*.suo
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
+*.dll
+*.pdb
+*.cache
+bin
+debug
+release
+.vs
+obj
