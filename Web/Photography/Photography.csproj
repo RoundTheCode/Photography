@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Photography.Infrastructure\Photography.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Photography.Api\Photography.Api.csproj" />
+    <ProjectReference Include="..\Photography.Api\Photography.Api.csproj" />
   </ItemGroup>
 
 </Project>
