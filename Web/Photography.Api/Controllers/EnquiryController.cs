@@ -1,5 +1,10 @@
 ﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Photography.Infrastructure.Types.Enquiry;
+using Photography.Infrastructure.Types.Enquiry.Data;
+using Photography.Infrastructure.Types.Enquiry.Model;
+using Photography.Infrastructure.Types.Image;
 using System;
 using System.Net;
 

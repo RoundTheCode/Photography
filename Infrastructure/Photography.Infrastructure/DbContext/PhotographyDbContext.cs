@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Photography.Infrastructure.Types.Category.Data;
+using Photography.Infrastructure.Types.Enquiry.Data;
+using Photography.Infrastructure.Types.Image.Data;
 using System;
 
 namespace Photography.Infrastructure.DbContext
@@ -10,6 +12,9 @@ namespace Photography.Infrastructure.DbContext
     public partial class PhotographyDbContext : DbContext
     {
         public virtual DbSet<CategoryEntity> CategoryEntities { get; set; }
+        public virtual DbSet<EnquiryEntity> EnquiryEntities { get; set; }
+        public virtual DbSet<ImageEntity> ImageEntities { get; set; }
+
 
         public PhotographyDbContext()
         {

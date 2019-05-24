@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Photography.Infrastructure.DbContext;
 using Photography.Infrastructure.Types.Category;
+using Photography.Infrastructure.Types.Enquiry;
+using Photography.Infrastructure.Types.Image;
 
 namespace Photography
 {
@@ -44,7 +41,8 @@ namespace Photography
             services.AddDbContext<PhotographyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PhotographyDbContext")));
 
             services.AddScoped<ICategoryService, CategoryService>();
-
+            services.AddScoped<IEnquiryService, EnquiryService>();
+            services.AddScoped<IImageService, ImageService>();
 
         }
 
