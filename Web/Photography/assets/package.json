@@ -1,15 +1,16 @@
 {
-  "name": "Photography",
+  "name": "photography",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node-sass sass/styles.scss -o css",
+    "watch": "node-sass --watch sass/styles.scss -o css"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "bootstrap": "4.1.3",
-    "bootstrap-sass": "^3.4.1"
+    "bootstrap-sass": "^3.4.1",
+    "node-sass": "^4.12.0"
   }
 }

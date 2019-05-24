@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/variables";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html {
+    overflow-x: hidden;
+    margin-right: calc(100vw + 100%);
+
+  }
+
+  html, body {
+    max-width: 1920px;
+    min-width: 150px;
+    min-height: 150px;
+    margin: 0 auto;
+}
+.row {
+    white-space: normal !important;
+}
+a {
+    color: #000;
+}

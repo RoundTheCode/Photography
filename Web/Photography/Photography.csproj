@@ -5,6 +5,28 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="assets\sass\**" />
+    <Content Remove="assets\sass\**" />
+    <EmbeddedResource Remove="assets\sass\**" />
+    <None Remove="assets\sass\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="assets\package-lock.json" />
+    <Content Remove="assets\package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="assets\css\styles.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="assets\css\styles.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
