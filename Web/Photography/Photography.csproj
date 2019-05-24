@@ -6,25 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="assets\css\**" />
     <Compile Remove="assets\sass\**" />
+    <Content Remove="assets\css\**" />
     <Content Remove="assets\sass\**" />
+    <EmbeddedResource Remove="assets\css\**" />
     <EmbeddedResource Remove="assets\sass\**" />
+    <None Remove="assets\css\**" />
     <None Remove="assets\sass\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="assets\package-lock.json" />
     <Content Remove="assets\package.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="assets\css\styles.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="assets\css\styles.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 

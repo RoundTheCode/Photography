@@ -5,7 +5,7 @@
     <title>Photography</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="@Url.Content("~/css/styles.css")">
+    <link rel="stylesheet" href="@Url.Content("~/dist/development/css/styles.css")">
 </head>
 <body>
     <div class="template">
@@ -17,5 +17,11 @@
             </div>
         </div>
     </div>
+    <script src="@Url.Content("~/dist/development/js/vendor/require.js")"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl: '/dist/development/js'
+        });
+    </script>
 </body>
 </html>
