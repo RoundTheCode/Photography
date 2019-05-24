@@ -11,3 +11,4 @@ debug
 release
 .vs
 obj
+node_modules
