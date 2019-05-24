@@ -1,8 +1,5 @@
 ﻿using Photography.Infrastructure.DbContext;
 using Photography.Infrastructure.Types.Enquiry.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Photography.Infrastructure.Types.Enquiry
 {
