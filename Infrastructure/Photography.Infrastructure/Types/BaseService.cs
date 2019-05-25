@@ -2,6 +2,8 @@
 using System;
 using System.Linq;
 using Photography.Infrastructure.Helpers;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Photography.Infrastructure.Types
 {
@@ -18,23 +20,39 @@ namespace Photography.Infrastructure.Types
 
         protected virtual TEntity GetById(int id)
         {
-            return _entities.FirstOrDefault(x => x.Id == id);
+            var category = GetByIdAsync(id);
+            category.Wait();
+
+            return category.Result;
+        }
+
+        protected virtual async Task<TEntity> GetByIdAsync(int id)
+        {
+            return await _entities.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         protected virtual TEntity GetByHash(string hash)
         {
-            return _entities.FirstOrDefault(x => x.Hash == hash);
+            var category = GetByHashAsync(hash);
+            category.Wait();
+
+            return category.Result;
+        }
+
+        protected virtual async Task<TEntity> GetByHashAsync(string hash)
+        {
+            return await _entities.FirstOrDefaultAsync(x => x.Hash == hash);
         }
 
 
-        protected virtual TEntity Insert(TEntity entity)
+        protected virtual async Task<TEntity> InsertAsync(TEntity entity)
         {
             entity.Created = DateTimeOffset.Now;
             entity.Enabled = true;
             entity.Hash = Guid.NewGuid().ToString().ToMD5();
 
             _context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Added;
-            entity.Id = _context.SaveChanges();
+            entity.Id = await _context.SaveChangesAsync();
 
             return entity;
         }

@@ -1,5 +1,6 @@
 ﻿using Photography.Infrastructure.DbContext;
 using Photography.Infrastructure.Types.Enquiry.Data;
+using System.Threading.Tasks;
 
 namespace Photography.Infrastructure.Types.Enquiry
 {
@@ -9,9 +10,9 @@ namespace Photography.Infrastructure.Types.Enquiry
         {
         }
 
-        public virtual new EnquiryEntity Insert(EnquiryEntity entity)
+        public virtual new async Task<EnquiryEntity> InsertAsync(EnquiryEntity entity)
         {
-            return base.Insert(entity);
+            return await base.InsertAsync(entity);
         }
     }
 }

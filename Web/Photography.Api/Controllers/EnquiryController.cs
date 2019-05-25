@@ -7,6 +7,7 @@ using Photography.Infrastructure.Types.Enquiry.Model;
 using Photography.Infrastructure.Types.Image;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Photography.Api.Controllers
 {
@@ -32,10 +33,10 @@ namespace Photography.Api.Controllers
 
 
         [HttpPost("[action]")]
-        public virtual ActionResult PostEnquiry(Enquiry enquiry, string imageHash)
+        public virtual async Task<IActionResult> PostEnquiry(Enquiry enquiry, string imageHash)
         {
             // Does the image exist?
-            var image = _imageService.GetByHash(imageHash);
+            var image = await _imageService.GetByHashAsync(imageHash);
 
             if (image == null)
             {
@@ -46,7 +47,7 @@ namespace Photography.Api.Controllers
             entity.Image = image;
             entity.ImageId = image.Id;
 
-            _enquiryService.Insert(entity);
+            await _enquiryService.InsertAsync(entity);
 
             return new JsonResult(new { Status = "Success" });
         }

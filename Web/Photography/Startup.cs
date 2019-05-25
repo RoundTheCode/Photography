@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Photography.Constraints;
 using Photography.Infrastructure.DbContext;
 using Photography.Infrastructure.Types.Category;
 using Photography.Infrastructure.Types.Enquiry;
@@ -67,8 +68,11 @@ namespace Photography
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    name: "Page",
+                    template: "{*slug}",
+                    defaults: new { controller = "Page", action = "Render" },
+                    constraints: new { slug = new PageConstraint() }
+                    );
             });
         }
     }

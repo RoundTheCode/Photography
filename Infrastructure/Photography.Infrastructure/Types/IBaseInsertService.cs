@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Photography.Infrastructure.Types
 {
     public partial interface IBaseInsertService<TEntity> where TEntity : class, IBaseEntity
     {
-        TEntity Insert(TEntity entity);
+        Task<TEntity> InsertAsync(TEntity entity);
     }
 }
