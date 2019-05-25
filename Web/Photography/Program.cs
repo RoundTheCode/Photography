@@ -19,7 +19,7 @@ namespace Photography
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseWebRoot("assets")
+            .UseWebRoot("wwwroot")
                 .UseStartup<Startup>();
                 
     }
