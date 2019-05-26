@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using System.Linq;
 
 namespace Photography.Infrastructure.Types.Image.Data
 {
@@ -17,6 +17,18 @@ namespace Photography.Infrastructure.Types.Image.Data
 
         [ForeignKey("ImageId")]
         public virtual ICollection<ImageCategoryEntity> ImageCategories { get; set; }
+
+        [NotMapped]
+        public virtual ImageAttributeEntity FullImageAttributes
+        {
+            get => ImageAttributes?.FirstOrDefault(i => i.Main);
+        }
+
+        [NotMapped]
+        public virtual ImageAttributeEntity ThumbnailImageAttributes
+        {
+            get => ImageAttributes?.FirstOrDefault(i => !i.Main);
+        }
 
     }
 }

@@ -1,0 +1,16 @@
+﻿@model CategoryModel
+@{
+    Layout = "_Layout";
+}
+<div class="container-fluid listing">
+    <div class="row">
+        @if (Model.Images != null)
+        {
+            foreach (var i in Model.Images)
+            {
+                <partial name="~/Views/Image/_Listing.cshtml" model="@i" />
+            }
+        }
+
+    </div>
+</div>

@@ -33,10 +33,10 @@ namespace Photography.Infrastructure.Types.Image
             return await base.GetByHashAsync(hash);
         }
 
-        public virtual IEnumerable<ImageEntity> GetAllByCategory(int id)
+        public virtual async Task<IEnumerable<ImageEntity>> GetAllByCategoryAsync(int id)
         {
-            return _entities.Include(s => s.ImageCategories).Include(s => s.ImageAttributes)
-                .Where(x => x.ImageCategories.Any(s => s.CategoryId == id)).ToList();
+            return await _entities.Include(s => s.ImageCategories).Include(s => s.ImageAttributes)
+                .Where(x => x.ImageCategories.Any(s => s.CategoryId == id)).ToListAsync();
         }
 
 

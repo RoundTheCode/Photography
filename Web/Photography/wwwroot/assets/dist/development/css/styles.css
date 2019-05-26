@@ -5787,6 +5787,19 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+.categoryListing .listingContainer {
+  margin: 10px; }
+
+.categoryListing .listingBorder {
+  border: 1px #ddd solid; }
+
+.categoryListing .imageContainer {
+  position: relative;
+  margin: 10px; }
+
+.categoryListing .enquiryContainer {
+  margin: 10px; }
+
 html {
   overflow-x: hidden;
   margin-right: calc(100vw + 100%); }

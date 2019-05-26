@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Photography.Infrastructure.Types.Image
 {
     public partial interface IImageService : IBaseSelectService<ImageEntity>
     {
-        IEnumerable<ImageEntity> GetAllByCategory(int id);
+        Task<IEnumerable<ImageEntity>> GetAllByCategoryAsync(int id);
     }
 }

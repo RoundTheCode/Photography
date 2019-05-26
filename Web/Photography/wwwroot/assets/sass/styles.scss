@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/variables";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "category/listing";
 
 html {
     overflow-x: hidden;

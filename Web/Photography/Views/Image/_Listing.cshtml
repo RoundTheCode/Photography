@@ -1,0 +1,21 @@
+﻿@using Photography.Infrastructure.Types.Image.Data
+@model ImageEntity
+    <div class="categoryListing col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center">
+        <div class="listingContainer">
+            <div class="listingBorder">
+                <div class="imageContainer">
+                    @if (Model.FullImageAttributes != null && Model.ThumbnailImageAttributes != null)
+                    {
+                    <a href="@Model.FullImageAttributes.Path">
+                        <img src="@Model.ThumbnailImageAttributes.Path" alt="@Model.Title" width="@Model.ThumbnailImageAttributes.Width" height="@Model.ThumbnailImageAttributes.Height" style="margin:10px;" />
+                    </a>
+                    }
+                    <h2>@Model.Title</h2>
+                    <p>This is a description</p>
+                </div>
+                <div class="enquiryContainer">
+                    <button class="enquiry"></button>
+                </div>
+            </div>
+        </div>
+    </div>

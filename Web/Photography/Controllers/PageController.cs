@@ -1,21 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Photography.Infrastructure.Types.Category.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Photography.Controllers
 {
-    public partial class PageController : Controller
+    public class PageController : Controller
     {
-        public IActionResult Render()
+        public IActionResult Home()
         {
-            var category = ControllerContext.RouteData.Values["category"] != null ? (CategoryEntity)ControllerContext.RouteData.Values["category"] : null;
+            return View();
+        }
 
-            if (category == null)
-            {
-                return Content("Not Found");
-            }
+        public IActionResult About()
+        {
+            return View();
+        }
 
-            return View(category);
+        public IActionResult Contact()
+        {
+            return View();
         }
     }
 }

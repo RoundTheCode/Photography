@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +27,11 @@ namespace Photography
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<RouteOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.AppendTrailingSlash = false;
+                options.LowercaseUrls = true;                  
             });
 
 
@@ -68,9 +69,28 @@ namespace Photography
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "Page",
+                    name: "HomePage",
+                    template: "",
+                    defaults: new { controller = "Page", action = "Home" }
+                    );
+
+                routes.MapRoute(
+                    name: "About",
+                    template: "about",
+                    defaults: new { controller = "Page", action = "AboutUs" }
+                    );
+
+                routes.MapRoute(
+                    name: "Contact",
+                    template: "contact",
+                    defaults: new { controller = "Page", action = "Contact" }
+                    );
+
+
+                routes.MapRoute(
+                    name: "Category",
                     template: "{*slug}",
-                    defaults: new { controller = "Page", action = "Render" },
+                    defaults: new { controller = "Category", action = "Listing" },
                     constraints: new { slug = new PageConstraint() }
                     );
             });

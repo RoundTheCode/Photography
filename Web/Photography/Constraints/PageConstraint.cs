@@ -2,10 +2,6 @@
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Photography.Infrastructure.Types.Category;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Photography.Constraints
 {
@@ -36,7 +32,10 @@ namespace Photography.Constraints
                 return false;
             }
 
+            values["controller"] = "Category";
+            values["action"] = "Listing";
             values["category"] = category;
+
             return true;
         }
     }
