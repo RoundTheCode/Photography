@@ -17,10 +17,8 @@ namespace Photography.Controllers
             _imageService = imageService;
         }
 
-        public async Task<IActionResult> Listing()
+        public async Task<IActionResult> Listing(CategoryEntity category)
         {
-            var category = ControllerContext.RouteData.Values["category"] != null ? (CategoryEntity)ControllerContext.RouteData.Values["category"] : null;
-
             if (category == null)
             {
                 return Content("Not Found");

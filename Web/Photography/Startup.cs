@@ -1,17 +1,25 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Photography.Constraints;
+using Photography.Filters;
 using Photography.Infrastructure.DbContext;
 using Photography.Infrastructure.Types.Category;
+using Photography.Infrastructure.Types.Category.Data;
 using Photography.Infrastructure.Types.Enquiry;
 using Photography.Infrastructure.Types.Image;
+using Photography.Routes;
 
 namespace Photography
 {
@@ -31,21 +39,26 @@ namespace Photography
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.AppendTrailingSlash = false;
-                options.LowercaseUrls = true;                  
+                options.LowercaseUrls = true;
             });
 
+            var mvcOptions = new Action<MvcOptions>(options =>
+            {
+                options.Filters.Add(new ActionParameterFilterAttribute());
+                options.EnableEndpointRouting = false;
+            });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(mvcOptions).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var controllerAssembly = Assembly.Load(new AssemblyName("Photography.Api"));
-            services.AddMvc().AddApplicationPart(controllerAssembly).AddControllersAsServices();
+            services.AddMvc(mvcOptions).AddApplicationPart(controllerAssembly).AddControllersAsServices();
 
             services.AddDbContext<PhotographyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PhotographyDbContext")));
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IEnquiryService, EnquiryService>();
             services.AddScoped<IImageService, ImageService>();
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +78,7 @@ namespace Photography
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+    
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -86,13 +99,7 @@ namespace Photography
                     defaults: new { controller = "Page", action = "Contact" }
                     );
 
-
-                routes.MapRoute(
-                    name: "Category",
-                    template: "{*slug}",
-                    defaults: new { controller = "Category", action = "Listing" },
-                    constraints: new { slug = new PageConstraint() }
-                    );
+                routes.MapCategoryRoute();
             });
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Photography.Infrastructure.Types.Category;
+using Photography.Infrastructure.Types.Category.Data;
 
 namespace Photography.Constraints
 {
@@ -14,25 +15,12 @@ namespace Photography.Constraints
                 return true;
             }
 
-            var slug = values["slug"] != null ? values["slug"].ToString() : null;
-
-            if (string.IsNullOrWhiteSpace(slug))
-            {
-                // Homepage
-                return true;
-            }
-
-            // Get category service
-            var categoryService = httpContext.RequestServices.GetRequiredService<ICategoryService>();
-
-            var category = categoryService.GetBySlug(slug);
+            var category = values["category"] != null ? (CategoryEntity)values["category"] : null;
 
             if (category == null)
             {
                 return false;
             }
-
-            values["category"] = category;
 
             return true;
         }
