@@ -32,8 +32,6 @@ namespace Photography.Constraints
                 return false;
             }
 
-            values["controller"] = "Category";
-            values["action"] = "Listing";
             values["category"] = category;
 
             return true;
