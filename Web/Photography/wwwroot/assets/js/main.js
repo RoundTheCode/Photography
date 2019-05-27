@@ -1,3 +1,6 @@
 require.config({
-    waitSeconds: 60
+    waitSeconds: 60,
+    paths: {
+        'jquery': 'vendor/jquery'
+    }
 });

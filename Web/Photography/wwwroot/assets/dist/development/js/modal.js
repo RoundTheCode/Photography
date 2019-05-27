@@ -1,5 +1,6 @@
-define(['components/modal'], function(modal) {
+define(['jquery', 'components/modal'], function($, Modal) {
     "use strict";
 
-    console.log("modal", modal);
+    var modal = new Modal($(".categoryListing"));
+    
 });

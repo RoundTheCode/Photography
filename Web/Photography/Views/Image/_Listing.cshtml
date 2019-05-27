@@ -6,7 +6,7 @@
                 <div class="imageContainer">
                     @if (Model.FullImageAttributes != null && Model.ThumbnailImageAttributes != null)
                     {
-                    <a href="@Model.FullImageAttributes.Path">
+                    <a href="@Model.FullImageAttributes.Path" class="imageLink">
                         <img src="@Model.ThumbnailImageAttributes.Path" alt="@Model.Title" width="@Model.ThumbnailImageAttributes.Width" height="@Model.ThumbnailImageAttributes.Height" style="margin:10px;" />
                     </a>
                     }

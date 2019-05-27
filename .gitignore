@@ -12,3 +12,4 @@ release
 .vs
 obj
 node_modules
+dist
